@@ -23,7 +23,7 @@ RUN \
 	tar -zxf /tmp/elasticsearch.tar.gz; \
 	rm /tmp/elasticsearch.tar.gz
 
-RUN /elasticsearch-2.0.0/bin/plugin -install royrusso/elasticsearch-HQ
+RUN /elasticsearch-2.0.0/bin/plugin install royrusso/elasticsearch-HQ
 
 VOLUME /data
 
