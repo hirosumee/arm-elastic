@@ -25,8 +25,12 @@ RUN \
 
 RUN /elasticsearch-2.0.0/bin/plugin install royrusso/elasticsearch-HQ
 
+USER root
+
+ADD run.sh /run.sh
+
 VOLUME /data
 
 ENV ES_HEAP_SIZE 512M
 
-ENTRYPOINT ["/elasticsearch-2.0.0/bin/elasticsearch", "-Dpath.data=/data"]
+ENTRYPOINT ["/run.sh"]
