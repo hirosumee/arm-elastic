@@ -10,4 +10,4 @@ mkdir -p $LOG_DIR
 chown -R elasticsearch $DATA_DIR
 chown -R elasticsearch $LOG_DIR
 
-su -c "/elasticsearch-2.0.0/bin/elasticsearch -server -Dpath.data=${DATA_DIR} -Dpath.logs=${LOG_DIR} -Dcluster.name=${CLUSTER_NAME} -Dnetwork.host=${LISTEN} $*" elasticsearch
+su -c "/elasticsearch-2.2.0/bin/elasticsearch -server -Dpath.data=${DATA_DIR} -Dpath.logs=${LOG_DIR} -Dcluster.name=${CLUSTER_NAME} -Dnetwork.host=${LISTEN} $*" elasticsearch
