@@ -13,17 +13,17 @@ RUN \
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
-RUN useradd -m -d /elasticsearch-2.2.0 elasticsearch
+RUN useradd -m -d /elasticsearch-2.4.0 elasticsearch
 
 USER elasticsearch
 
 RUN \
 	cd /; \
-	wget -q -O /tmp/elasticsearch.tar.gz https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.2.0/elasticsearch-2.2.0.tar.gz; \
+	wget -q -O /tmp/elasticsearch.tar.gz https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.0/elasticsearch-2.4.0.tar.gz; \
 	tar -zxf /tmp/elasticsearch.tar.gz; \
 	rm /tmp/elasticsearch.tar.gz
 
-RUN /elasticsearch-2.2.0/bin/plugin install royrusso/elasticsearch-HQ
+#RUN /elasticsearch-2.4.0/bin/plugin install royrusso/elasticsearch-HQ
 
 USER root
 
