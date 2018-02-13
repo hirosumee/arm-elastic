@@ -7,7 +7,7 @@ docker pull jritsema/rpi-elasticsearch:2.4.0
 ```
 
 docker-compose.yml
-```
+```yaml
 elasticsearch:
   image: jritsema/rpi-elasticsearch:2.4.0
   volumes:
