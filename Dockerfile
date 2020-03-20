@@ -1,29 +1,25 @@
 FROM armbuild/ubuntu
 
-RUN apt-get update && apt-get install -y wget software-properties-common && apt-get clean
 
-RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN \
-	add-apt-repository -y ppa:webupd8team/java; \
-	apt-get update; \
-	apt-get install -y oracle-java8-installer; \
-	apt-get clean; \
-	rm -rf /var/cache/oracle-jdk8-installer
+RUN apt-get update -y
 
-ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+RUN apt-get install -y curl wget software-properties-common && apt-get clean
 
-RUN useradd -m -d /elasticsearch-2.4.0 elasticsearch
+RUN curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.6.1-linux-x86_64.tar.gz
+
+RUN curl -L -O https://mirrors.huaweicloud.com/java/jdk/8u202-b08/jdk-8u202-linux-arm32-vfp-hflt.tar.gz
+
+RUN tar xf jdk-8u202-linux-arm32-vfp-hflt.tar.gz -C /opt
+
+ENV JAVA_HOME /opt/jdk1.8.0_202
+
+RUN useradd -m -d /elasticsearch-7.6.1 elasticsearch
 
 USER elasticsearch
 
-RUN \
-	cd /; \
-	wget -q -O /tmp/elasticsearch.tar.gz https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.4.0/elasticsearch-2.4.0.tar.gz; \
-	tar -zxf /tmp/elasticsearch.tar.gz; \
-	rm /tmp/elasticsearch.tar.gz
-
-#RUN /elasticsearch-2.4.0/bin/plugin install royrusso/elasticsearch-HQ
+RUN tar -xvf elasticsearch-7.6.1-linux-x86_64.tar.gz
 
 USER root
 
