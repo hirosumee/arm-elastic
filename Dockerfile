@@ -24,14 +24,15 @@ RUN tar -xvf elasticsearch-7.6.1-linux-x86_64.tar.gz
 
 USER root
 
+RUN rm elasticsearch-7.6.1-linux-x86_64.tar.gz bellsoft-jdk14+36-linux-arm32-vfp-hflt-full.tar.gz
+
 ADD run.sh /run.sh
 
 VOLUME /data
 
 ENV ES_HEAP_SIZE 512M
 
-EXPOSE 9200
-
-EXPOSE 9300
-
 ENTRYPOINT ["/run.sh"]
+
+EXPOSE 9200 9300
+
